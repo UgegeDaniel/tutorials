@@ -1,0 +1,76 @@
+Docker helps us to run our applications isolated from the processes already available or not available on our system. As it ships the application with it's own isolated processes and packages.
+
+Images (readonly: after creation)
+    Store stuff that will not run in them. They contain everything that Application needs to run
+        1. Runtime environment
+        2. Application code
+        3. Any Dependencies
+        4. Extra configurations (eg. environment variables)
+        5. Commands
+Container 
+    Runable instance of the Images
+    When you run a the image it creates a container which is a process that can run the Application exactly as outlineed in the image created.
+    Container are also known as isolated process which means they run independently of all other processes on the computer
+
+The Advantage of using a container over a virtual machine is that virtual machines need their own operating system that run on your existing os which makes them memory inefficient and slow. Containers on the other hand share the host operating system and are typically faster.
+
+To Start A Container, you have to 'pull' a template image from docker hub.
+
+create a dockerfile in your project directory and put this 
+
+FROM node:18-alpine //the version of node needed for this application
+
+RUN npm instal -g nodemon //global installation
+
+WORKDIR /app //where the files in the project should be copied to for docker to use
+
+COPY . . //telling docker to copy the source code
+
+RUN npm install //telling docker to install the dependencies needed for this application using your provided package.json
+
+EXPOSE 4000 //port needed for this application to run
+
+CMD ["node", "app.js"] //command to start this application
+CMD ["npm", "run", "dev"] //or a dev script
+
+After which you run the following command
+docker build -t myapp . 
+//to create the image using the dockerfile
+docker build -t myapp:v1 .
+//to create versioned images
+
+Run the following command to see all the images
+docker images
+
+Run the following command to create and start the container using docker
+docker run --name myapp_c2 -p 4000:4000 -d myapp
+//with versioned images, use the following
+docker run --name myapp_c1 -p 4000:4000 myapp:v1
+//to remove the container after you stop it, use the rm flag
+docker run --name myapp_c_nodemon -p 4000:4000 --rm myapp:nodemon
+//with volumes (remember to run pwd first)
+docker run --name myapp_c_nodemon -p 4000:4000 --rm -v {pwd}:/app -v /app/node_modules myapp:nodemon
+
+Run the following command to start an existing container using docker
+docker start myapp_c2
+
+Run the following command to see running processes(containers)
+docker ps
+
+Run the following command to see all processes(containers)
+docker ps -a
+
+Run the following command to stop an active process
+docker stop myapp_c1
+
+Run the following command to remove an image that is not being used
+docker image rm myapp
+
+Run the following command to remove an image that is not being used
+docker images rm myapp -f
+
+Run the following command to remove a container that is not being used
+docker container rm myapp_c2
+
+Run the following command to remove all images, containers and volumes
+docker system prune -a
