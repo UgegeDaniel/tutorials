@@ -1,3 +1,12 @@
+Dockerfile
+docker*.yml
+
+.git
+.gitignore
+.config
+
+.npm
+.vscode
 node_modules
 
-npm-debug.log
+README.md
