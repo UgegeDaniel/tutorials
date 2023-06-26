@@ -8,3 +8,13 @@ services:
     volumes:
       - ./api:/app
       - /mnt/c/Users/Administrator/Documents/tutorials/docker/app/node_modules
+  frontend:
+    build: ./docker-fe
+    container_name: fe_c
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./docker-fe:/app
+      - /mnt/c/Users/Administrator/Documents/tutorials/docker/app/node_modules
+    stdin_open: true
+    tty: true
