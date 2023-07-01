@@ -1,0 +1,10 @@
+to spin up dev server (WSL)
+ng serve --poll-2000
+
+MVC / MVW 
+2 Way data binding
+Filters, Directives and Expressions
+Controllerrs
+Views and Routing
+Animations
+Form Validation

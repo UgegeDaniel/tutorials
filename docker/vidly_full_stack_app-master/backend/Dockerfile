@@ -8,6 +8,8 @@ COPY package*.json ./
 RUN npm install
 COPY . . 
 
+ENV ENV_EXAMPLE=8080
+
 EXPOSE 3001 
 
 CMD ["npm", "start"]
