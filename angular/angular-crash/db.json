@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "text": "Two Way Binding In Angular",
+      "day": "Today",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "Two Way Binding In Angular",
+      "day": "Today",
+      "reminder": true,
+      "id": 2
+    }
+  ]
+}
