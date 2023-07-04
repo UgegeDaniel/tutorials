@@ -1,0 +1,29 @@
+    nest new nest-prisma-jwt
+change port number in bootstrap function
+    npm run start:dev 
+
+DOCKER
+create the docker-compose.yml file and configure the db
+    docker-compose up
+
+PRISMA 
+    npm install prisma@latest -d
+    npm install @prisma/client
+    npx prisma init 
+Edit schema.prisma file and include models then run migrations
+(run migrations everytime you edit the schema.prisma)
+    npx prisma migrate dev --create-only
+You can now push your migrations and view your models in the browser 
+    npx prisma db push
+    npx prisma studio
+
+NEST 
+create modules with 
+    npx nest g module auth
+    npx nest g service prisma
+create controllers and services without test files
+    npx nest g controller auth --no-spec
+    npx nest g service auth --no-spec
+
+For Input Validation
+    npm install class-validator class-transformer
